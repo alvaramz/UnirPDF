@@ -1,0 +1,6 @@
+{
+  "name": "UnirPDF",
+  "tagline": "",
+  "body": "# UnirPDF\r\n\r\nPequeña aplicación para unir archivos con formato PDF, basada en la biblioteca java Apache PDFBox (http://pdfbox.apache.org).\r\n\r\n# Desarrollado por\r\n\r\nIng. Adrián Alvarado Ramírez.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
