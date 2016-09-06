@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.alvaramz.unirpdf;
 
 import java.util.List;
 
 /**
  *
- * @author Ing. Adrián Alvarado Ramírez <adrian.alvarado_r@ucr.ac.cr> - Facultad
- * de Educación, Universidad de Costa Rica
+ * @author Ing. Adrián Alvarado Ramírez.
  */
 public class UnirPDFPrincipal extends javax.swing.JFrame {
 
