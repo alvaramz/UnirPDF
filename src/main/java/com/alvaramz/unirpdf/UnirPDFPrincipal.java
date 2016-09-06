@@ -5,6 +5,8 @@
  */
 package com.alvaramz.unirpdf;
 
+import java.util.List;
+
 /**
  *
  * @author Ing. Adrián Alvarado Ramírez <adrian.alvarado_r@ucr.ac.cr> - Facultad
@@ -28,22 +30,109 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnUnirArchivos = new javax.swing.JButton();
+        lblRutaOrigen = new javax.swing.JLabel();
+        txtRutaOrigen = new javax.swing.JTextField();
+        lblRutaDestino = new javax.swing.JLabel();
+        txtRutaDestino = new javax.swing.JTextField();
+        lblNombreArchivoDestino = new javax.swing.JLabel();
+        txtNombreArchivo = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Unir PDF");
+
+        btnUnirArchivos.setText("Unir archivos");
+        btnUnirArchivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnirArchivosActionPerformed(evt);
+            }
+        });
+
+        lblRutaOrigen.setText("Ruta Origen:");
+        lblRutaOrigen.setName("lblRutaOrigen"); // NOI18N
+
+        lblRutaDestino.setText("Ruta Destino:");
+        lblRutaDestino.setName(""); // NOI18N
+
+        lblNombreArchivoDestino.setText("Nombre archivo destino:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(btnUnirArchivos)
+                .addGap(0, 159, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblNombreArchivoDestino)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreArchivo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblRutaOrigen)
+                            .addComponent(lblRutaDestino))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRutaOrigen)
+                            .addComponent(txtRutaDestino))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRutaOrigen)
+                    .addComponent(txtRutaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRutaDestino)
+                    .addComponent(txtRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombreArchivoDestino)
+                    .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(btnUnirArchivos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnUnirArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirArchivosActionPerformed
+        unirArchivo();
+    }//GEN-LAST:event_btnUnirArchivosActionPerformed
+
+    /**
+     * Ejecuta la funcionalidad de unir el archivo a partir de los parámetros ingresados
+     * por el usuario.
+     */
+    private void unirArchivo(){
+        String rutaBase, rutaSalida, nombreArchivoSalida;
+        PDFUtil pdfUtil;
+        DirectorioUtil dirUtil;
+        
+        rutaBase = txtRutaOrigen.getText();
+        rutaSalida = txtRutaDestino.getText();
+        nombreArchivoSalida = txtNombreArchivo.getText();
+                
+        dirUtil = new DirectorioUtil();              
+        pdfUtil = new PDFUtil();
+        
+        List<String> listaArchivos = dirUtil.obtenerListaArchivos(rutaBase);
+        
+        if(listaArchivos != null){
+            pdfUtil.unirArchivos(rutaBase, listaArchivos, rutaSalida, nombreArchivoSalida);
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -80,5 +169,12 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUnirArchivos;
+    private javax.swing.JLabel lblNombreArchivoDestino;
+    private javax.swing.JLabel lblRutaDestino;
+    private javax.swing.JLabel lblRutaOrigen;
+    private javax.swing.JTextField txtNombreArchivo;
+    private javax.swing.JTextField txtRutaDestino;
+    private javax.swing.JTextField txtRutaOrigen;
     // End of variables declaration//GEN-END:variables
 }
