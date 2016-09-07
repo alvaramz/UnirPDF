@@ -39,6 +39,7 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         txtNombreArchivo = new javax.swing.JTextField();
         btnEscogerRutaOrigen = new javax.swing.JButton();
         btnEscogerRutaDestino = new javax.swing.JButton();
+        lblInstrucciones = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPrincipal = new javax.swing.JMenu();
         menuItemSalir = new javax.swing.JMenuItem();
@@ -81,6 +82,8 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblInstrucciones.setText("El orden de los archivos a unir es por orden alfabético");
+
         menuPrincipal.setText("Programa");
 
         menuItemSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
@@ -113,17 +116,24 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(252, Short.MAX_VALUE)
+                .addComponent(btnUnirArchivos)
+                .addGap(250, 250, 250))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblInstrucciones, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblNombreArchivoDestino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreArchivo))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRutaOrigen)
-                            .addComponent(lblRutaDestino))
+                            .addComponent(lblRutaDestino)
+                            .addComponent(lblRutaOrigen))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtRutaOrigen)
@@ -133,15 +143,13 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
                     .addComponent(btnEscogerRutaOrigen)
                     .addComponent(btnEscogerRutaDestino, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(252, Short.MAX_VALUE)
-                .addComponent(btnUnirArchivos)
-                .addGap(250, 250, 250))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addComponent(lblInstrucciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRutaOrigen)
                     .addComponent(txtRutaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,6 +297,7 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnUnirArchivos;
     private javax.swing.JFileChooser dialogoDirectorio;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblInstrucciones;
     private javax.swing.JLabel lblNombreArchivoDestino;
     private javax.swing.JLabel lblRutaDestino;
     private javax.swing.JLabel lblRutaOrigen;
