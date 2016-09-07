@@ -1,7 +1,8 @@
-
 package com.alvaramz.unirpdf;
 
+import java.net.URL;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -15,6 +16,7 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     public UnirPDFPrincipal() {
         initComponents();
         txtRutaOrigen.requestFocus();
+        agregarIcono();
     }
 
     /**
@@ -134,6 +136,12 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void agregarIcono() {
+        URL iconURL = getClass().getClassLoader().getResource("logo.png");
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage());
+    }
+
     private void btnUnirArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirArchivosActionPerformed
         unirArchivo();
     }//GEN-LAST:event_btnUnirArchivosActionPerformed
@@ -149,29 +157,29 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemAcercaDeActionPerformed
 
     /**
-     * Ejecuta la funcionalidad de unir el archivo a partir de los parámetros ingresados
-     * por el usuario.
+     * Ejecuta la funcionalidad de unir el archivo a partir de los parámetros
+     * ingresados por el usuario.
      */
-    private void unirArchivo(){
+    private void unirArchivo() {
         String rutaBase, rutaSalida, nombreArchivoSalida;
         PDFUtil pdfUtil;
         DirectorioUtil dirUtil;
-        
+
         rutaBase = txtRutaOrigen.getText();
         rutaSalida = txtRutaDestino.getText();
         nombreArchivoSalida = txtNombreArchivo.getText();
-                
-        dirUtil = new DirectorioUtil();              
+
+        dirUtil = new DirectorioUtil();
         pdfUtil = new PDFUtil();
-        
+
         List<String> listaArchivos = dirUtil.obtenerListaArchivos(rutaBase);
-        
-        if(listaArchivos != null){
+
+        if (listaArchivos != null) {
             pdfUtil.unirArchivos(rutaBase, listaArchivos, rutaSalida, nombreArchivoSalida);
         }
-        
+
     }
-    
+
     /**
      * @param args the command line arguments
      */
