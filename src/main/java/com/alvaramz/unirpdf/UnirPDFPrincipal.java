@@ -170,7 +170,9 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     }
 
     private void btnUnirArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirArchivosActionPerformed
+        btnUnirArchivos.setEnabled(false);
         unirArchivo();
+        btnUnirArchivos.setEnabled(true);
     }//GEN-LAST:event_btnUnirArchivosActionPerformed
 
     private void menuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSalirActionPerformed
@@ -233,7 +235,12 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         List<String> listaArchivos = dirUtil.obtenerListaArchivos(rutaBase);
 
         if (listaArchivos != null) {
-            pdfUtil.unirArchivos(rutaBase, listaArchivos, rutaSalida, nombreArchivoSalida);
+           Respuesta res = pdfUtil.unirArchivos(rutaBase, listaArchivos, rutaSalida, nombreArchivoSalida);
+           if(res.isResultado()){
+               JOptionPane.showMessageDialog(this, "Archivo unido con éxito", "¡Éxito al unir los archivos!", JOptionPane.INFORMATION_MESSAGE);
+           }else{
+               JOptionPane.showMessageDialog(this, String.format("<html><h1>Error al crear el archivo</h1><h2>Detalle del error:</h2><p>%s</p></html>", res.getMensaje()), "¡Error!",JOptionPane.ERROR_MESSAGE);
+           }
         }
         }else{
             JOptionPane.showMessageDialog(this, "<html><h1>Debe ingresar todos los datos</h1><p>Puede utilizar los botones <strong>\"...\"</strong> de la derecha de cada campo para<br> ingresar la ruta de las carpetas origen y destino.</p></html>", "¡Error!",JOptionPane.ERROR_MESSAGE);

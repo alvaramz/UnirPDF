@@ -24,7 +24,9 @@ public class PDFUtil {
      * @param rutaSalida
      * @param nombreArchivoSalida
      */
-    public void unirArchivos(String rutaBase, List<String> nombresArchivos, String rutaSalida, String nombreArchivoSalida) {
+    public Respuesta unirArchivos(String rutaBase, List<String> nombresArchivos, String rutaSalida, String nombreArchivoSalida) {
+        Respuesta res = new Respuesta();
+
         // Clase con la funcionalidad para unir.
         PDFMergerUtility pfmu = new PDFMergerUtility();
 
@@ -36,19 +38,29 @@ public class PDFUtil {
                 try {
                     pfmu.addSource(archivo);
                 } catch (FileNotFoundException fnfe) {
-                    System.out.printf("Error al intentar cargar el archivo: %s al contenedor de archivos a unir, detalle del error: %s", nombreArchivo, fnfe.toString());
+                    res.setMensaje(String.format("Error al intentar cargar el archivo: %s al contenedor de archivos a unir, detalle del error: %s", nombreArchivo, fnfe.toString()));
+                    res.setResultado(false);
+                    return res;
                 }
+            } else {
+                res.setMensaje(String.format("Error al intentar cargar el archivo: <strong>%s</strong> al contenedor de archivos a unir, detalle del error: %s", nombreArchivo, "<strong>El archivo no se puede leer</strong>,<br> verifique que el usuario tenga privilegios para leer el archivo."));
+                res.setResultado(false);
+                return res;
             }
         }
-        
+
         // Se establece el nombre del archivo de salida.
         pfmu.setDestinationFileName(String.format(String.format("%s%s%s", rutaSalida, File.separator, nombreArchivoSalida)));
-        
+
         // Se unen los archivos:
-        try{
+        try {
             pfmu.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
-        }catch(IOException ioe){
-            System.out.printf("Error al intentar unir el archivo: %s, detalle del error: %s", nombreArchivoSalida, ioe.toString());
+            res.setResultado(true);
+            return res;
+        } catch (IOException ioe) {
+            res.setMensaje(String.format("Error al intentar unir el archivo: %s, detalle del error: %s", nombreArchivoSalida, ioe.toString()));
+            res.setResultado(false);
+            return res;
         }
     }
 
