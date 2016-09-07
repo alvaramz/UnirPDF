@@ -14,6 +14,7 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
      */
     public UnirPDFPrincipal() {
         initComponents();
+        txtRutaOrigen.requestFocus();
     }
 
     /**
@@ -32,10 +33,16 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         txtRutaDestino = new javax.swing.JTextField();
         lblNombreArchivoDestino = new javax.swing.JLabel();
         txtNombreArchivo = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuPrincipal = new javax.swing.JMenu();
+        menuItemSalir = new javax.swing.JMenuItem();
+        menuAyuda = new javax.swing.JMenu();
+        menuItemAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Unir PDF");
 
+        btnUnirArchivos.setMnemonic('U');
         btnUnirArchivos.setText("Unir archivos");
         btnUnirArchivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +58,34 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
 
         lblNombreArchivoDestino.setText("Nombre archivo destino:");
 
+        menuPrincipal.setText("Programa");
+
+        menuItemSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemSalir.setText("Salir");
+        menuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSalirActionPerformed(evt);
+            }
+        });
+        menuPrincipal.add(menuItemSalir);
+
+        jMenuBar1.add(menuPrincipal);
+
+        menuAyuda.setText("Ayuda");
+
+        menuItemAcercaDe.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemAcercaDe.setText("Acerca de");
+        menuItemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAcercaDeActionPerformed(evt);
+            }
+        });
+        menuAyuda.add(menuItemAcercaDe);
+
+        jMenuBar1.add(menuAyuda);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,14 +95,13 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
                 .addComponent(btnUnirArchivos)
                 .addGap(0, 159, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lblNombreArchivoDestino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreArchivo))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblRutaOrigen)
                             .addComponent(lblRutaDestino))
@@ -103,6 +137,16 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     private void btnUnirArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirArchivosActionPerformed
         unirArchivo();
     }//GEN-LAST:event_btnUnirArchivosActionPerformed
+
+    private void menuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSalirActionPerformed
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_menuItemSalirActionPerformed
+
+    private void menuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAcercaDeActionPerformed
+        AcercaDe acercaDe = new AcercaDe();
+        acercaDe.setVisible(true);
+    }//GEN-LAST:event_menuItemAcercaDeActionPerformed
 
     /**
      * Ejecuta la funcionalidad de unir el archivo a partir de los parámetros ingresados
@@ -165,9 +209,14 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUnirArchivos;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblNombreArchivoDestino;
     private javax.swing.JLabel lblRutaDestino;
     private javax.swing.JLabel lblRutaOrigen;
+    private javax.swing.JMenu menuAyuda;
+    private javax.swing.JMenuItem menuItemAcercaDe;
+    private javax.swing.JMenuItem menuItemSalir;
+    private javax.swing.JMenu menuPrincipal;
     private javax.swing.JTextField txtNombreArchivo;
     private javax.swing.JTextField txtRutaDestino;
     private javax.swing.JTextField txtRutaOrigen;
