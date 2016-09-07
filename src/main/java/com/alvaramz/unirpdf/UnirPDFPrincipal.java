@@ -3,6 +3,7 @@ package com.alvaramz.unirpdf;
 import java.net.URL;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +29,7 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogoDirectorio = new javax.swing.JFileChooser();
         btnUnirArchivos = new javax.swing.JButton();
         lblRutaOrigen = new javax.swing.JLabel();
         txtRutaOrigen = new javax.swing.JTextField();
@@ -35,11 +37,16 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         txtRutaDestino = new javax.swing.JTextField();
         lblNombreArchivoDestino = new javax.swing.JLabel();
         txtNombreArchivo = new javax.swing.JTextField();
+        btnEscogerRutaOrigen = new javax.swing.JButton();
+        btnEscogerRutaDestino = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPrincipal = new javax.swing.JMenu();
         menuItemSalir = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         menuItemAcercaDe = new javax.swing.JMenuItem();
+
+        dialogoDirectorio.setCurrentDirectory(new java.io.File("/home/alvaradora/System.getProperty(\"user.home\")"));
+        dialogoDirectorio.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Unir PDF");
@@ -59,6 +66,20 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         lblRutaDestino.setName(""); // NOI18N
 
         lblNombreArchivoDestino.setText("Nombre archivo destino:");
+
+        btnEscogerRutaOrigen.setText("...");
+        btnEscogerRutaOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscogerRutaOrigenActionPerformed(evt);
+            }
+        });
+
+        btnEscogerRutaDestino.setText("...");
+        btnEscogerRutaDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscogerRutaDestinoActionPerformed(evt);
+            }
+        });
 
         menuPrincipal.setText("Programa");
 
@@ -93,10 +114,6 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(btnUnirArchivos)
-                .addGap(0, 159, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -111,19 +128,29 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtRutaOrigen)
                             .addComponent(txtRutaDestino))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEscogerRutaOrigen)
+                    .addComponent(btnEscogerRutaDestino, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(252, Short.MAX_VALUE)
+                .addComponent(btnUnirArchivos)
+                .addGap(250, 250, 250))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRutaOrigen)
-                    .addComponent(txtRutaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRutaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEscogerRutaOrigen))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRutaDestino)
-                    .addComponent(txtRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEscogerRutaDestino))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreArchivoDestino)
@@ -156,6 +183,35 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         acercaDe.setVisible(true);
     }//GEN-LAST:event_menuItemAcercaDeActionPerformed
 
+    private void btnEscogerRutaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscogerRutaOrigenActionPerformed
+       cargarRutaOrigen();
+    }//GEN-LAST:event_btnEscogerRutaOrigenActionPerformed
+
+    private void btnEscogerRutaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscogerRutaDestinoActionPerformed
+       cargarRutaDestino();
+    }//GEN-LAST:event_btnEscogerRutaDestinoActionPerformed
+
+    /**
+     * Inicia un dialogo de JFileChooser para cargar la ruta de origen.
+     */
+    private void cargarRutaOrigen(){    
+      int resultado = dialogoDirectorio.showOpenDialog(this);
+        if(resultado == javax.swing.JFileChooser.APPROVE_OPTION){
+            txtRutaOrigen.setText(dialogoDirectorio.getSelectedFile().getAbsolutePath());
+        }
+    }
+    
+    /**
+     * Inicia un dialogo de JFileChooser para cargar la ruta de destino.
+     */
+    private void cargarRutaDestino(){    
+      int resultado = dialogoDirectorio.showOpenDialog(this);
+        if(resultado == javax.swing.JFileChooser.APPROVE_OPTION){
+            txtRutaDestino.setText(dialogoDirectorio.getSelectedFile().getAbsolutePath());
+        }
+    }
+    
+    
     /**
      * Ejecuta la funcionalidad de unir el archivo a partir de los parámetros
      * ingresados por el usuario.
@@ -164,11 +220,13 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
         String rutaBase, rutaSalida, nombreArchivoSalida;
         PDFUtil pdfUtil;
         DirectorioUtil dirUtil;
-
+   
         rutaBase = txtRutaOrigen.getText();
         rutaSalida = txtRutaDestino.getText();
         nombreArchivoSalida = txtNombreArchivo.getText();
 
+        if(!rutaBase.trim().equals("") && !rutaSalida.trim().equals("") && !nombreArchivoSalida.trim().equals("")){
+        
         dirUtil = new DirectorioUtil();
         pdfUtil = new PDFUtil();
 
@@ -176,6 +234,9 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
 
         if (listaArchivos != null) {
             pdfUtil.unirArchivos(rutaBase, listaArchivos, rutaSalida, nombreArchivoSalida);
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "<html><h1>Debe ingresar todos los datos</h1><p>Puede utilizar los botones <strong>\"...\"</strong> de la derecha de cada campo para<br> ingresar la ruta de las carpetas origen y destino.</p></html>", "¡Error!",JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -216,7 +277,10 @@ public class UnirPDFPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEscogerRutaDestino;
+    private javax.swing.JButton btnEscogerRutaOrigen;
     private javax.swing.JButton btnUnirArchivos;
+    private javax.swing.JFileChooser dialogoDirectorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblNombreArchivoDestino;
     private javax.swing.JLabel lblRutaDestino;

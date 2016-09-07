@@ -72,7 +72,7 @@ public class AcercaDe extends javax.swing.JFrame {
             try {
                 Desktop.getDesktop().browse(new URI("https://github.com/alvaramz/UnirPDF"));
             } catch (IOException ex) {
-                Logger.getLogger(AcercaDe.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AcercaDe.class.getName()).log(Level.SEVERE, null, ex);                
             } catch (URISyntaxException ex) {
                 Logger.getLogger(AcercaDe.class.getName()).log(Level.SEVERE, null, ex);
             }
